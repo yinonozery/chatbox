@@ -1,15 +1,21 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src": "socket.io.js",
-            "use": "@now/node"
-        }
-    ],
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "socket.io.js"
-        }
-    ]
+  "version": 2,
+  "builds": [
+    {
+      "src": "socket.io.js",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/socket.io.js",
+      "dest": "socket.io.js"
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/public/$1"
+    }
+  ]
 }
