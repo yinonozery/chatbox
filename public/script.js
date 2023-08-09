@@ -8,14 +8,18 @@ const roomNumberTitle = document.getElementById('room-number');
 let username = '';
 let roomNumber = '';
 window.onload = () => {
-    messageInput.addEventListener('keydown', addMsg);
+    messageInput.addEventListener('keydown', handleKeyPress);
 
     const userInfoJSON = localStorage.getItem('userInfo');
     if (!userInfoJSON) {
         do {
-            username = prompt('Please enter your username:');
-            roomNumber = prompt('Please enter the room number:');
-        } while (!username);
+            username = prompt('Please enter your username (at least 3 letters long):');
+        } while (!username || username.length < 3);
+
+        do {
+            roomNumber = Number(prompt('Please enter the room number:'));
+        } while (!roomNumber || typeof roomNumber !== 'number');
+
         localStorage.setItem('userInfo', JSON.stringify({ username, roomNumber }));
         roomNumberTitle.innerText = `Room: ${roomNumber}, Name: ${username}`;
     } else {
@@ -25,17 +29,6 @@ window.onload = () => {
         roomNumberTitle.innerText = `Room: ${roomNumber}, Name: ${username}`;
     }
     socket.emit('chat:join-room', { roomNumber, username });
-};
-
-const addMsg = (event) => {
-    if (event.which === 13 && !event.shiftKey) {
-        const message = messageInput.value.trim();
-        if (message && username) {
-            socket.emit('chat:message', { roomNumber, username, message, type: 'outgoing' });
-            messageInput.value = '';
-        }
-        event.preventDefault();
-    }
 };
 
 socket.on('chat:message', ({ roomNumber, author, msg, type }) => {
@@ -65,3 +58,24 @@ socket.on('room-participants', (participants) => {
     participantsDiv.innerText = '';
     participantsDiv.append(participantsList);
 });
+
+const sendMessage = () => {
+    const messageInput = document.getElementById('message');
+    const message = messageInput.value.trim();
+    if (message && username) {
+        socket.emit('chat:message', { roomNumber, username, message, type: 'outgoing' });
+        messageInput.value = '';
+    }
+};
+
+const handleKeyPress = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        sendMessage();
+    }
+};
+
+const signOut = () => {
+    localStorage.clear();
+    document.location.reload();
+};

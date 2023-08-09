@@ -39,7 +39,7 @@ body {
 .container .logo img {
     height: 120px;
     user-select: none;
-    pointer-events: none
+    pointer-events: none;
 }
 
 .container hr {
@@ -50,16 +50,33 @@ body {
     margin-bottom: 10px;
 }
 
-.container .room-number {
+.container .user-details {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.user-details .room-number {
     text-align: center;
     font-size: 0.7em;
     background-color: #66c7a6;
     width: fit-content;
-    margin-inline: auto;
     margin-bottom: 10px;
     border-radius: 10px;
     color: white;
     padding: 10px 20px;
+}
+
+.user-details .signout {
+    text-align: center;
+    font-size: 0.7em;
+    background-color: #c76666;
+    width: fit-content;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 .main-content {

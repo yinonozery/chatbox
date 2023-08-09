@@ -1,8 +1,9 @@
-const express = require('express');
-const app = express();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const express = require('express'),
+    app = express(),
+    server = require('http').Server(app),
+    io = require('socket.io')(server);
 
+// Room -> { room_id : { socket_id : username }}
 const rooms = {};
 
 io.on('connection', (socket) => {
@@ -25,7 +26,6 @@ io.on('connection', (socket) => {
     });
 
     socket.on('chat:message', ({ roomNumber, username, message, type }) => {
-        console.log(username);
         io.to(roomNumber).emit('chat:message', {
             author: username,
             msg: message,
@@ -46,11 +46,8 @@ io.on('connection', (socket) => {
 
 app.use(express.static('public'));
 
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
-});
-
 const PORT = process.env.PORT || 3000;
+
 server.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
