@@ -3,12 +3,16 @@
     {
       "src": "socket.io.js",
       "use": "@vercel/node"
-    }
+    },
+        {
+            "src": "public/**",
+            "use": "@vercel/static"
+        }
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "socket.io.js"
+      "src": "/",
+      "dest": "public/index.html"
     }
   ]
 }
