@@ -1,14 +1,14 @@
 {
   "builds": [
-      {
-          "src": "socket.io.js",
-          "use": "@vercel/node"
-      }
+    {
+      "src": "socket.io.js",
+      "use": "@vercel/node"
+    }
   ],
   "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "/public/"
-      }
+    {
+      "src": "/(.*)",
+      "dest": "public"
+    }
   ]
 }
