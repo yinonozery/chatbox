@@ -37,7 +37,7 @@ socket.on('chat:message', ({ roomNumber, author, msg, type }) => {
     const msgPar = document.createElement('p');
     messageDiv.className = author === username ? 'incoming message' : 'outgoing message';
     msgPar.innerText = msg;
-    authorH4.innerHTML = author;
+    authorH4.innerHTML = author + ' - ' + getFormattedTimestamp();
     messageDiv.appendChild(authorH4);
     messageDiv.appendChild(msgPar);
     messagesDiv.appendChild(messageDiv);
@@ -58,6 +58,20 @@ socket.on('room-participants', (participants) => {
     participantsDiv.innerText = '';
     participantsDiv.append(participantsList);
 });
+
+const getFormattedTimestamp = () => {
+    const now = new Date();
+    const options = {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: false, // Use 24-hour format
+    };
+
+    return now.toLocaleString('he-IL', options);
+};
 
 const sendMessage = () => {
     const messageInput = document.getElementById('message');
