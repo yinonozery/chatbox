@@ -56,4 +56,5 @@ Enjoy chatting with other participants in the same room!
 
 ---
 
-**Live Demo:** Soon...
+## Deployment
+You can try out the ChatBox by visiting the live demo <a href="https://chatbox-zog8.onrender.com/">here <img src="https://user-images.githubusercontent.com/74764366/218328226-f06c59a2-3c9a-4800-96a0-2c1b2f9476bf.png" width="20" /></a>.
