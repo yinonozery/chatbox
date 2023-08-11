@@ -26,7 +26,7 @@ window.onload = () => {
         const userInfo = JSON.parse(userInfoJSON);
         username = userInfo.username;
         roomNumber = userInfo.roomNumber;
-        roomNumberTitle.innerText = `Room: ${roomNumber}, Name: ${username}`;
+        roomNumberTitle.innerHTML = `<span>Room: ${roomNumber}</span> | <span>Name: ${username}</span>`;
     }
     socket.emit('chat:join-room', { roomNumber, username });
 };
@@ -42,7 +42,6 @@ socket.on('chat:message', ({ roomNumber, author, msg, type }) => {
     messageDiv.appendChild(msgPar);
     messagesDiv.appendChild(messageDiv);
     messageDiv.scrollIntoView();
-
 });
 
 socket.on('room-participants', (participants) => {
