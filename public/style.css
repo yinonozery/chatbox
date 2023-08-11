@@ -6,6 +6,7 @@
     box-sizing: border-box;
     font-family: 'Roboto';
     user-select: none;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -17,15 +18,30 @@ body {
     height: 100%;
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f17d;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 .container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
     width: max(350px, 70%);
     height: 100%;
     border-inline: 1px solid #ccc;
     font-size: 24px;
     background-color: #ffffff;
+    min-height: 100vh;
+    max-height: 100vh;
 }
 
 .container .logo {
@@ -86,7 +102,8 @@ body {
 .container .messages {
     position: relative;
     width: 85%;
-    height: 50vh;
+    height: 60vh;
+
     overflow-y: auto;
     padding: 25px 1%;
 }
@@ -123,7 +140,7 @@ body {
     padding: 15px;
     border-radius: 4px;
     margin-bottom: 40px;
-    width: max(40%, 200px);
+    width: clamp(40%, 60%, 300px);
     position: relative;
 }
 
@@ -151,6 +168,7 @@ body {
     width: 100%;
     padding: 5px;
     font-size: 0.8rem;
+    padding-top: 5px;
     margin-top: auto;
     text-align: center;
     /* height: 20vh; */
@@ -176,7 +194,21 @@ form textarea {
 }
 
 footer {
-    position: relative;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    font-size: 0.6em;
+    height: 25px;
+    width: max(350px, 69.9%);
+}
+
+fo2oter {
+    top: 100vh;
     width: 100%;
     background-color: #f3f3f3;
     padding: 5px;
