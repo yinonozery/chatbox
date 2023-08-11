@@ -41,6 +41,8 @@ socket.on('chat:message', ({ roomNumber, author, msg, type }) => {
     messageDiv.appendChild(authorH4);
     messageDiv.appendChild(msgPar);
     messagesDiv.appendChild(messageDiv);
+    messageDiv.scrollIntoView();
+
 });
 
 socket.on('room-participants', (participants) => {
