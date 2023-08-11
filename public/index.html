@@ -32,7 +32,14 @@
             </div>
             <div class="send">
                 <form id="chat-form" onsubmit="addMsg(event); return false;">
-                    <textarea type="text" cols="10" rows="5" id="message" placeholder="Message"></textarea>
+                    <textarea
+                        type="text"
+                        cols="10"
+                        rows="5"
+                        id="message"
+                        placeholder="Message"
+                        maxlength="1024"
+                    ></textarea>
                     <button type="button" onclick="sendMessage()">
                         <div class="svg-wrapper">
                             <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
