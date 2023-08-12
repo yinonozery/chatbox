@@ -81,6 +81,7 @@ const sendMessage = () => {
         socket.emit('chat:message', { roomNumber, username, message, type: 'outgoing' });
         messageInput.value = '';
     }
+    messageInput.focus();
 };
 
 const handleKeyPress = (event) => {
